@@ -4,6 +4,7 @@ import com.notes.entities.User;
 import com.notes.repositories.UserRepository;
 import com.notes.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,22 +20,23 @@ public class UserController {
     private UserService userService;
 
     //Create
-    @PostMapping("/user")
-    public User saveUser(
-            //Add @Validate annotation
-            @RequestBody User user)
+    @PostMapping("/user/create")
+    @ResponseStatus(HttpStatus.OK)
+    public User createUser(@RequestBody User user)
     {
-        return userService.saveUser(user);
+        return userService.createUser(user);
     }
 
     //Read
     @GetMapping("/user")
+    @ResponseStatus(HttpStatus.OK)
     public List<User> fetchUserList()
     {
         return userService.fetchUserList();
     }
 
-    @GetMapping("user/{id}")
+    @GetMapping("/user/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public Optional<User> findUserById(@PathVariable("id")
                                            Integer userId)
     {
@@ -42,7 +44,8 @@ public class UserController {
     }
 
     //Update
-    @PutMapping("user/{id}")
+    @PutMapping("/user/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public User
     updateUser(@RequestBody User user,
                @PathVariable("id") Integer userId)
@@ -54,6 +57,7 @@ public class UserController {
 
     //Delete
     @DeleteMapping("/user/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public String deleteUserById(@PathVariable("id")
                                  Integer userId)
     {

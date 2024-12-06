@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface UserService {
 
     //Create
-    User saveUser(User user);
+    User createUser(User user);
     //Read
     List<User> fetchUserList();
     Optional<User> findUserById(int userId);

@@ -16,7 +16,7 @@ public class UserServicelmpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public User saveUser(User user) {
+    public User createUser(User user) {
         return userRepository.save(user);
     }
 
