@@ -8,6 +8,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 //@RestController annotation combines @Controller and @ResponseBody
@@ -33,11 +34,11 @@ public class UserController {
         return userService.fetchUserList();
     }
 
-    @GetMapping("/user/{id}")
-    public User findUserById(@PathVariable("id")
-                                 Integer userId)
+    @GetMapping("user/{id}")
+    public Optional<User> findUserById(@PathVariable("id")
+                                           Integer userId)
     {
-       return userService.findUserById();
+        return userService.findUserById(userId);
     }
 
     //Update

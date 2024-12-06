@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class UserServicelmpl implements UserService {
@@ -25,8 +26,8 @@ public class UserServicelmpl implements UserService {
     }
 
     @Override
-    public User findUserById(User user, Integer userId) {
-        userRepository.findById(userId);
+    public Optional<User> findUserById(int userId) {
+        return userRepository.findById(userId);
     }
 
     @Override
