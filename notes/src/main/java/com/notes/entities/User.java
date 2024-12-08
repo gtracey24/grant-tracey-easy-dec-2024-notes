@@ -1,6 +1,9 @@
 package com.notes.entities;
 
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -8,11 +11,14 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int userId;
 
     private String username;
 
     private String password;
+
+    @OneToMany (mappedBy = "user")
+    private final List<Note> notes = new ArrayList<>();
 
     public User() {
     }
@@ -27,13 +33,13 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id && Objects.equals(username, user.username) && Objects.equals(password, user.password);
+        return userId == user.userId && Objects.equals(username, user.username) && Objects.equals(password, user.password);
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "id=" + userId +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
@@ -41,15 +47,15 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password);
+        return Objects.hash(userId, username, password);
     }
 
-    public int getId() {
-        return id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
