@@ -20,8 +20,7 @@ public class UserController {
     private UserService userService;
 
     //Create
-    @PostMapping("/user/create")
-    @ResponseStatus(HttpStatus.OK)
+    @PostMapping("create")
     public User createUser(@RequestBody User user)
     {
         return userService.createUser(user);
@@ -29,14 +28,12 @@ public class UserController {
 
     //Read
     @GetMapping("/user")
-    @ResponseStatus(HttpStatus.OK)
     public List<User> fetchUserList()
     {
         return userService.fetchUserList();
     }
 
     @GetMapping("/user/{id}")
-    @ResponseStatus(HttpStatus.OK)
     public Optional<User> findUserById(@PathVariable("id")
                                            Integer userId)
     {
@@ -45,7 +42,6 @@ public class UserController {
 
     //Update
     @PutMapping("/user/{id}")
-    @ResponseStatus(HttpStatus.OK)
     public User
     updateUser(@RequestBody User user,
                @PathVariable("id") Integer userId)
@@ -57,7 +53,6 @@ public class UserController {
 
     //Delete
     @DeleteMapping("/user/{id}")
-    @ResponseStatus(HttpStatus.OK)
     public String deleteUserById(@PathVariable("id")
                                  Integer userId)
     {
